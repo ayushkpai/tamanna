@@ -1,6 +1,6 @@
 const modalData = {
   accessbars: {
-    title: "Acccess Bars",
+    title: "Access Bars",
 
     text: "...",
   },
