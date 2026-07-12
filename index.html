@@ -62,7 +62,7 @@
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-44 pb-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-20 pb-12">
       <div id="menu" class="hidden fixed inset-0 z-50">
         <div
           onclick="closeMenu()"
@@ -95,9 +95,9 @@
         </div>
       </div>
 
-      <main class="max-w-7xl mx-auto px-6 pt-32 pb-10">
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-44 pb-12">
         <div class="grid lg:grid-cols-3 gap-6 items-start">
-          <section class="lg:col-span-2 grid grid-cols-2 gap-5">
+          <section class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div
               class="glass rounded-3xl p-6 card group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)] hover:border-violet-400/50"
             >
@@ -177,14 +177,42 @@
 
           <aside class="hidden lg:flex justify-center sticky top-32">
             <div
-              class="h-72 w-72 rounded-[40px] bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center shadow-2xl hover:scale-105 transition duration-500"
+              class="h-80 w-80 rounded-[45px] bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center shadow-2xl hover:scale-105 transition duration-500"
             >
-              <img src="images/logo.png" class="h-48 w-48 object-contain" />
+              <img src="images/logo.png" class="h-56 w-56 object-contain" />
             </div>
           </aside>
         </div>
-      </main>
 
+        <div
+          id="modal"
+          class="hidden fixed inset-0 z-[60] bg-black/80 backdrop-blur overflow-y-auto flex justify-center items-start sm:items-center p-4"
+        >
+          <div
+            id="modalBox"
+            class="glass rounded-3xl w-full max-w-lg my-6 max-h-[90vh] overflow-y-auto p-5 sm:p-8"
+          >
+            <div class="flex justify-end">
+              <button
+                onclick="closeModal()"
+                class="text-3xl hover:text-violet-400"
+              >
+                ×
+              </button>
+            </div>
+
+            <h2
+              id="modalTitle"
+              class="text-2xl sm:text-3xl font-bold mb-5"
+            ></h2>
+
+            <div
+              id="modalText"
+              class="text-gray-400 leading-7 whitespace-pre-wrap break-words"
+            ></div>
+          </div>
+        </div>
+      </main>
       <div
         id="modal"
         class="hidden fixed inset-0 z-[60] bg-black/80 backdrop-blur overflow-y-auto flex justify-center items-start sm:items-center p-4"
