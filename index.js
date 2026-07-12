@@ -1,8 +1,26 @@
 const modalData = {
-  projects: {
-    title: "Projects",
+  accessbars: {
+    title: "Acccess Bars",
 
-    text: "Loading projects...",
+    text: "...",
+  },
+  
+  accessbodyproccess: {
+    title: "Acccess Body Proccess",
+
+    text: "...",
+  },
+ 
+  accessfacelift: {
+    title: "Acccess Body Proccess",
+
+    text: "...",
+  },
+
+  symphonyofpossiblities: {
+    title: "Symphony of Possiblites",
+
+    text: "...",
   },
 };
 
