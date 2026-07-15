@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Tamanna</title>
+    <title>Tamanna | Access More of You</title>
 
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" href="index.css" />
@@ -13,11 +12,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body>
+  <body class="bg-[#050816] text-white">
     <div class="blob one"></div>
     <div class="blob two"></div>
 
-    <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-3">
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
       <div
         class="max-w-7xl mx-auto glass rounded-3xl h-16 px-5 flex items-center justify-between"
       >
@@ -25,17 +24,22 @@
           <div
             class="h-11 w-11 rounded-xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center"
           >
-            <img src="images/logo.png" class="h-6 w-6 object-contain" />
+            <img
+              src="images/logo.png"
+              alt="Tamanna Logo"
+              class="h-7 w-7 object-contain"
+            />
           </div>
 
           <div>
-            <h1 class="text-xl sm:text-2xl font-bold text-pink-600">Tamanna</h1>
+            <h1 class="text-2xl font-bold text-pink-500">Tamanna</h1>
 
             <p class="text-xs text-white/50">Access more of you</p>
           </div>
         </div>
 
         <button
+          type="button"
           onclick="openMenu()"
           class="h-10 w-10 rounded-xl flex items-center justify-center text-2xl hover:bg-white/10 transition"
         >
@@ -44,19 +48,20 @@
       </div>
     </header>
 
-    <header class="fixed top-20 left-0 right-0 z-40 px-4">
+    <header class="fixed top-24 left-0 right-0 z-40 px-4">
       <div class="max-w-7xl mx-auto glass rounded-3xl px-5 py-4">
-        <p class="text-sm sm:text-base font-medium">
-          Access consciousness tools to access more of you
+        <p class="text-sm sm:text-base font-medium text-center">
+          Access consciousness tools to create more ease, awareness and
+          possibilities
         </p>
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-44 pb-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-48 pb-16">
       <div id="menu" class="hidden fixed inset-0 z-50">
         <div
           onclick="closeMenu()"
-          class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+          class="absolute inset-0 bg-black/70 backdrop-blur"
         ></div>
 
         <div
@@ -69,125 +74,178 @@
           <div class="text-center mt-8">
             <img
               src="images/logo.png"
+              alt="Tamanna"
               class="h-24 w-24 mx-auto rounded-3xl bg-gradient-to-br from-violet-500 to-pink-500 p-3"
             />
 
             <h2 class="text-3xl font-bold mt-5">Tamanna</h2>
 
-            <p class="text-gray-400 mt-2">Navya</p>
+            <p class="text-gray-400 mt-2">Consciousness & Transformation</p>
           </div>
 
           <div class="glass rounded-3xl p-6 mt-8">
             <h3 class="text-xl font-semibold">About</h3>
 
             <p class="text-gray-400 mt-3 leading-7">
-              Tamanna is a space for exploring consciousness, awareness, and
-              personal transformation. Discover tools that create more ease,
-              clarity, and possibilities in life.
+              Tamanna is a space dedicated to consciousness, awareness and
+              personal transformation. Explore powerful tools designed to create
+              more clarity, relaxation, confidence and possibilities in your
+              life.
             </p>
+          </div>
+          <div class="glass rounded-3xl p-6 mt-6">
+            <h3 class="text-xl font-semibold">Connect With Us</h3>
+
+            <p class="text-gray-400 mt-3 leading-7">
+              Have questions or want to know which session is right for you?
+              Send us your details and we will connect with you.
+            </p>
+
+            <form class="mt-6 space-y-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+              />
+
+              <input
+                type="tel"
+                placeholder="Mobile Number"
+                maxlength="10"
+                class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+              />
+
+              <button
+                type="submit"
+                class="w-full rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-3 font-semibold hover:scale-105 transition"
+              >
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-6 items-start">
-        <section class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <section class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div
-            class="glass rounded-3xl p-6 group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)] hover:border-violet-400/50"
+            class="glass rounded-3xl p-6 group transition duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)]"
           >
-            <img src="images/Access_bars.webp" class="object-contain" />
+            <img
+              src="images/Access_bars.webp"
+              alt="Access Bars"
+              class="h-52 w-full object-contain rounded-2xl"
+            />
 
-            <h2 class="text-xl font-semibold group-hover:text-violet-300">
+            <h2 class="text-2xl font-semibold mt-5 group-hover:text-violet-300">
               Access Bars
             </h2>
 
             <p class="text-gray-400 mt-3 leading-7">
-              A gentle technique that helps release stress, limiting beliefs,
-              and create more ease.
+              A gentle relaxation technique that helps release stress, mental
+              pressure and limiting beliefs while creating more ease and
+              clarity.
             </p>
 
             <button
               onclick="openModal('accessbars')"
-              class="mt-6 text-violet-400 group-hover:text-pink-400"
+              class="mt-6 text-violet-400 hover:text-pink-400"
             >
               Explore →
             </button>
           </div>
 
           <div
-            class="glass rounded-3xl p-6 group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)] hover:border-violet-400/50"
+            class="glass rounded-3xl p-6 group transition duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)]"
           >
-            <img src="images/Body_process.jpg" class="object-contain" />
+            <img
+              src="images/Body_process.jpg"
+              alt="Access Body Process"
+              class="h-52 w-full object-contain rounded-2xl"
+            />
 
-            <h2 class="text-xl font-semibold group-hover:text-violet-300">
+            <h2 class="text-2xl font-semibold mt-5 group-hover:text-violet-300">
               Access Body Process
             </h2>
 
             <p class="text-gray-400 mt-3 leading-7">
-              Energetic processes to create more awareness and connection with
-              your body.
+              Energetic processes that encourage greater awareness, relaxation
+              and a deeper connection with your body.
             </p>
 
             <button
-              onclick="openModal('accessbodyproccess')"
-              class="mt-6 text-violet-400 group-hover:text-pink-400"
+              onclick="openModal('accessbodyprocess')"
+              class="mt-6 text-violet-400 hover:text-pink-400"
             >
               Explore →
             </button>
           </div>
 
           <div
-            class="glass rounded-3xl p-6 group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)] hover:border-violet-400/50"
+            class="glass rounded-3xl p-6 group transition duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)]"
           >
-            <img src="images/Facelift.png" class="object-contain" />
+            <img
+              src="images/Facelift.png"
+              alt="Access Facelift"
+              class="h-52 w-full object-contain rounded-2xl"
+            />
 
-            <h2 class="text-xl font-semibold group-hover:text-violet-300">
+            <h2 class="text-2xl font-semibold mt-5 group-hover:text-violet-300">
               Access Facelift
             </h2>
 
             <p class="text-gray-400 mt-3 leading-7">
-              A gentle process creating more ease and awareness with your body.
+              A nurturing energetic process designed to create more ease,
+              awareness and connection with your body.
             </p>
 
             <button
               onclick="openModal('accessfacelift')"
-              class="mt-6 text-violet-400 group-hover:text-pink-400"
+              class="mt-6 text-violet-400 hover:text-pink-400"
             >
               Explore →
             </button>
           </div>
 
           <div
-            class="glass rounded-3xl p-6 group cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)] hover:border-violet-400/50"
+            class="glass rounded-3xl p-6 group transition duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(139,92,246,0.35)]"
           >
-            <img src="images/Sop.jpg" class="object-contain" />
+            <img
+              src="images/Sop.jpg"
+              alt="Symphony of Possibilities"
+              class="h-52 w-full object-contain rounded-2xl"
+            />
 
-            <h2 class="text-xl font-semibold group-hover:text-violet-300">
+            <h2 class="text-2xl font-semibold mt-5 group-hover:text-violet-300">
               Symphony of Possibilities
             </h2>
 
             <p class="text-gray-400 mt-3 leading-7">
-              Explore awareness, choices, and new possibilities beyond
+              Discover new awareness, choices and possibilities beyond old
               limitations.
             </p>
 
             <button
-              onclick="openModal('symphonyofpossiblities')"
-              class="mt-6 text-violet-400 group-hover:text-pink-400"
+              onclick="openModal('symphonyofpossibilities')"
+              class="mt-6 text-violet-400 hover:text-pink-400"
             >
               Explore →
             </button>
           </div>
         </section>
 
-        <aside class="hidden lg:flex justify-center sticky top-32">
+        <aside class="hidden lg:flex justify-center sticky top-36">
           <div
             class="h-80 w-80 rounded-[45px] bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center shadow-2xl hover:scale-105 transition duration-500"
           >
-            <img src="images/logo.png" class="h-56 w-56 object-contain" />
+            <img
+              src="images/logo.png"
+              alt="Tamanna Logo"
+              class="h-56 w-56 object-contain"
+            />
           </div>
         </aside>
       </div>
-
       <div
         id="modal"
         class="hidden fixed inset-0 z-[60] bg-black/80 backdrop-blur flex items-center justify-center p-4"
@@ -210,6 +268,68 @@
           ></div>
         </div>
       </div>
+
+      <section class="mt-16">
+        <div class="glass rounded-3xl p-8">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold">Get In Touch</h2>
+
+            <p class="mt-4 text-gray-400 leading-7">
+              Ready to explore more ease, awareness and possibilities? Contact
+              us today and begin your journey with Tamanna.
+            </p>
+          </div>
+
+          <form class="mt-10 grid sm:grid-cols-2 gap-5">
+            <input
+              type="text"
+              placeholder="Full Name"
+              class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+            />
+
+            <input
+              type="tel"
+              placeholder="Mobile Number"
+              class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+            />
+
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+            />
+
+            <select
+              class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+            >
+              <option class="text-black">Choose Session</option>
+
+              <option class="text-black">Access Bars</option>
+
+              <option class="text-black">Access Body Process</option>
+
+              <option class="text-black">Access Facelift</option>
+
+              <option class="text-black">Symphony of Possibilities</option>
+            </select>
+
+            <textarea
+              rows="5"
+              placeholder="Your Message"
+              class="sm:col-span-2 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+            ></textarea>
+
+            <button
+              type="submit"
+              class="sm:col-span-2 rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-3 font-semibold hover:scale-105 transition"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <footer class="text-center py-10 text-gray-500 text-sm"></footer>
     </main>
 
     <script src="index.js"></script>

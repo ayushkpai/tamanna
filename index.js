@@ -1,7 +1,6 @@
 const modalData = {
   accessbars: {
     title: "Access Bars",
-
     text: `
 Access Bars is a gentle hands-on energy technique that involves touching specific points on the head.
 
@@ -19,9 +18,8 @@ Access Bars is a simple and relaxing process designed to help you access more of
 `,
   },
 
-  accessbodyproccess: {
+  accessbodyprocess: {
     title: "Access Body Process",
-
     text: `
 Access Body Processes are energetic body techniques that invite your body to release limitations and create more ease.
 
@@ -41,7 +39,6 @@ Every body is different, and each session can create a unique experience.
 
   accessfacelift: {
     title: "Access Facelift",
-
     text: `
 Access Facelift is a gentle energetic process that works with the body to support a more youthful and vibrant appearance.
 
@@ -59,9 +56,8 @@ Access Facelift focuses on creating possibilities rather than fixing anything.
 `,
   },
 
-  symphonyofpossiblities: {
+  symphonyofpossibilities: {
     title: "Symphony of Possibilities",
-
     text: `
 Symphony of Possibilities is an advanced awareness-based session that explores new ways of perceiving life and creating change.
 
@@ -82,20 +78,19 @@ A Symphony session invites you to explore a different way of being and receiving
 
 function openMenu() {
   document.getElementById("menu").classList.remove("hidden");
-
   document.body.style.overflow = "hidden";
 }
 
 function closeMenu() {
   document.getElementById("menu").classList.add("hidden");
-
   document.body.style.overflow = "";
 }
 
 function openModal(type) {
   const modal = document.getElementById("modal");
-
   const box = document.getElementById("modalBox");
+
+  if (!modalData[type]) return;
 
   document.getElementById("modalTitle").textContent = modalData[type].title;
 
@@ -112,7 +107,6 @@ function openModal(type) {
 
 function closeModal() {
   const modal = document.getElementById("modal");
-
   const box = document.getElementById("modalBox");
 
   box.classList.remove("active");
