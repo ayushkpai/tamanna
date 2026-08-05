@@ -8,7 +8,111 @@
 
     <link rel="icon" href="images/favicon.ico" />
 
-    <link rel="stylesheet" href="index.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      body {
+        background: #030712;
+        color: white;
+        font-family: system-ui, sans-serif;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.06);
+
+        backdrop-filter: blur(20px);
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .card {
+        transition: 0.35s;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.3);
+      }
+
+      .blob {
+        position: fixed;
+
+        width: 320px;
+
+        height: 320px;
+
+        border-radius: 50%;
+
+        filter: blur(90px);
+
+        z-index: -1;
+      }
+
+      .blob.one {
+        background: #7c3aed;
+
+        top: -120px;
+
+        left: -120px;
+      }
+
+      .blob.two {
+        background: #ec4899;
+
+        right: -120px;
+
+        bottom: -120px;
+      }
+
+      @media (min-width: 768px) {
+        .blob {
+          width: 500px;
+
+          height: 500px;
+
+          filter: blur(120px);
+        }
+      }
+
+      #modalBox {
+        opacity: 0;
+
+        transform: scale(0.95);
+
+        transition: 0.25s ease;
+
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #modalBox.active {
+        opacity: 1;
+
+        transform: scale(1);
+      }
+
+      @media (max-width: 640px) {
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+
+          line-height: 1.7;
+        }
+      }
+    </style>
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -81,7 +185,7 @@
           <div
             class="glass rounded-3xl p-6 flex flex-col group transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(139,92,246,0.35)]"
           >
-            <a href="access_bars">
+            <a href="access-bars">
               <img
                 src="images/access_bars.webp"
                 alt="Access Bars"
@@ -114,7 +218,7 @@
           >
             <a href="body_process">
               <img
-                src="images/body_process.jpg"
+                src="images/body-process.jpg"
                 alt="Access Body Process"
                 class="h-56 w-full object-contain rounded-2xl transition duration-500 group-hover:scale-105"
               />
@@ -405,6 +509,141 @@
       </footer>
     </main>
 
-    <script src="index.js"></script>
+    <script>
+      const modalData = {
+        accessbars: {
+          title: "Access Bars",
+          text: `
+Access Bars is a gentle hands-on energy technique that involves touching specific points on the head.
+
+These points are connected with different areas of life such as creativity, control, money, healing, communication, and awareness.
+
+The process helps release limiting thoughts, emotions, beliefs, and patterns that may be stopping you from creating more possibilities.
+
+Benefits may include:
+• Deep relaxation
+• Reduced stress and tension
+• Greater clarity and awareness
+• Improved sense of ease and wellbeing
+
+Access Bars is a simple and relaxing process designed to help you access more of you.
+`,
+        },
+
+        accessbodyprocess: {
+          title: "Access Body Process",
+          text: `
+Access Body Processes are energetic body techniques that invite your body to release limitations and create more ease.
+
+These processes use gentle touch and awareness to support the body's natural ability to heal, change, and receive.
+
+They are designed to help you develop a different relationship with your body and become more aware of its possibilities.
+
+Benefits may include:
+• Increased body awareness
+• Greater relaxation
+• More connection with your body
+• Releasing stored tension and limitations
+
+Every body is different, and each session can create a unique experience.
+`,
+        },
+
+        accessfacelift: {
+          title: "Access Facelift",
+          text: `
+Access Facelift is a gentle energetic process that works with the body to support a more youthful and vibrant appearance.
+
+The process involves light touch on specific areas of the face and body while inviting the body to release stress and limitations.
+
+It is designed to create more ease with your body and your relationship with aging.
+
+Benefits may include:
+• Relaxation and rejuvenation
+• Greater body awareness
+• A sense of lightness and wellbeing
+• More confidence and self-acceptance
+
+Access Facelift focuses on creating possibilities rather than fixing anything.
+`,
+        },
+
+        symphonyofpossibilities: {
+          title: "Symphony of Possibilities",
+          text: `
+Symphony of Possibilities is an advanced awareness-based session that explores new ways of perceiving life and creating change.
+
+It uses questions, awareness, and energetic tools to help you recognize possibilities beyond your current points of view.
+
+The process encourages you to move beyond limitations and discover what else could be possible.
+
+Benefits may include:
+• Expanding awareness
+• Creating new perspectives
+• Greater clarity in choices
+• More freedom and possibilities in life
+
+A Symphony session invites you to explore a different way of being and receiving.
+`,
+        },
+      };
+
+      function openMenu() {
+        document.getElementById("menu").classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMenu() {
+        document.getElementById("menu").classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      function openModal(type) {
+        const modal = document.getElementById("modal");
+        const box = document.getElementById("modalBox");
+
+        if (!modalData[type]) return;
+
+        document.getElementById("modalTitle").textContent =
+          modalData[type].title;
+
+        document.getElementById("modalText").textContent = modalData[type].text;
+
+        modal.classList.remove("hidden");
+
+        document.body.style.overflow = "hidden";
+
+        setTimeout(() => {
+          box.classList.add("active");
+        }, 10);
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("modal");
+        const box = document.getElementById("modalBox");
+
+        box.classList.remove("active");
+
+        setTimeout(() => {
+          modal.classList.add("hidden");
+
+          document.body.style.overflow = "";
+        }, 250);
+      }
+
+      document.getElementById("modal").addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeModal();
+
+          closeMenu();
+        }
+      });
+    </script>
   </body>
 </html>
