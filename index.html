@@ -8,6 +8,8 @@
 
     <link rel="icon" href="images/favicon.ico" />
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
       * {
         margin: 0;
@@ -24,15 +26,215 @@
       body {
         background: #030712;
         color: white;
-        font-family: system-ui, sans-serif;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
       }
 
       .glass {
         background: rgba(255, 255, 255, 0.06);
-
         backdrop-filter: blur(20px);
-
+        -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .blob {
+        position: fixed;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        filter: blur(90px);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .blob.one {
+        background: #7c3aed;
+        top: -120px;
+        left: -120px;
+      }
+
+      .blob.two {
+        background: #ec4899;
+        right: -120px;
+        bottom: -120px;
+      }
+
+      @media (min-width: 768px) {
+        .blob {
+          width: 500px;
+          height: 500px;
+          filter: blur(120px);
+        }
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 16px;
+        top: 16px;
+        bottom: 16px;
+        width: 240px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: transform 0.35s ease;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 13px 16px;
+        border-radius: 14px;
+        color: #9ca3af;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .sidebar-link:hover,
+      .sidebar-link.active {
+        color: white;
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.35),
+          rgba(236, 72, 153, 0.2)
+        );
+        transform: translateX(4px);
+      }
+
+      .sidebar-icon {
+        width: 22px;
+        min-width: 22px;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+
+      .sidebar-nav::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .sidebar-nav::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .sidebar-nav::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+      }
+
+      .sidebar-cta {
+        flex-shrink: 0;
+        margin-top: 16px;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      .sidebar-overlay {
+        display: none;
+      }
+
+      @media (min-width: 1024px) {
+        body {
+          padding-left: 270px;
+        }
+      }
+
+      @media (max-width: 1023px) {
+        .sidebar {
+          left: 12px;
+          top: 12px;
+          bottom: 12px;
+          width: min(280px, calc(100vw - 24px));
+          transform: translateX(calc(-100% - 30px));
+          overflow: hidden;
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+          position: fixed;
+          top: 16px;
+          left: 16px;
+          z-index: 110;
+          width: 48px;
+          height: 48px;
+          align-items: center;
+          justify-content: center;
+          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          transition: 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+          background: rgba(124, 58, 237, 0.25);
+          transform: scale(1.05);
+        }
+
+        .sidebar-overlay {
+          display: block;
+          position: fixed;
+          inset: 0;
+          z-index: 90;
+          background: rgba(0, 0, 0, 0.65);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          opacity: 0;
+          visibility: hidden;
+          transition: 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        header {
+          padding-top: 80px !important;
+        }
+      }
+
+      #modalBox {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: 0.25s ease;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #modalBox.active {
+        opacity: 1;
+        transform: scale(1);
       }
 
       .card {
@@ -41,64 +243,7 @@
 
       .card:hover {
         transform: translateY(-8px);
-
         box-shadow: 0 20px 50px rgba(124, 58, 237, 0.3);
-      }
-
-      .blob {
-        position: fixed;
-
-        width: 320px;
-
-        height: 320px;
-
-        border-radius: 50%;
-
-        filter: blur(90px);
-
-        z-index: -1;
-      }
-
-      .blob.one {
-        background: #7c3aed;
-
-        top: -120px;
-
-        left: -120px;
-      }
-
-      .blob.two {
-        background: #ec4899;
-
-        right: -120px;
-
-        bottom: -120px;
-      }
-
-      @media (min-width: 768px) {
-        .blob {
-          width: 500px;
-
-          height: 500px;
-
-          filter: blur(120px);
-        }
-      }
-
-      #modalBox {
-        opacity: 0;
-
-        transform: scale(0.95);
-
-        transition: 0.25s ease;
-
-        -webkit-overflow-scrolling: touch;
-      }
-
-      #modalBox.active {
-        opacity: 1;
-
-        transform: scale(1);
       }
 
       @media (max-width: 640px) {
@@ -108,20 +253,134 @@
 
         p {
           font-size: 0.95rem;
-
           line-height: 1.7;
         }
       }
-    </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+      .mobile-menu-btn.is-hidden {
+        display: none !important;
+      }
+    </style>
   </head>
 
-  <body class="bg-[#050816] text-white overflow-x-hidden">
+  <body>
     <div class="blob one"></div>
     <div class="blob two"></div>
 
-    <header class="relative md:top-0 md:left-0 md:right-0 z-50 px-4 pt-4">
+    <button
+      id="mobileMenuBtn"
+      class="mobile-menu-btn"
+      onclick="openSidebar()"
+      aria-label="Open navigation"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <div
+      id="sidebarOverlay"
+      class="sidebar-overlay"
+      onclick="closeSidebar()"
+    ></div>
+
+    <aside id="sidebar" class="sidebar p-5" aria-label="Main navigation">
+      <div class="flex-shrink-0">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 p-1 flex items-center justify-center shadow-lg"
+            >
+              <img
+                src="images/logo.png"
+                alt="Tamanna Logo"
+                class="w-full h-full object-contain rounded-xl"
+              />
+            </div>
+
+            <div>
+              <h2 class="text-xl font-bold">Tamanna</h2>
+              <p class="text-xs text-gray-400 mt-0.5">Access More of You</p>
+            </div>
+          </div>
+
+          <button
+            onclick="closeSidebar()"
+            class="lg:hidden text-2xl text-gray-400 hover:text-white transition"
+            aria-label="Close navigation"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 my-6"></div>
+
+      <nav class="sidebar-nav space-y-2">
+        <a
+          href="#home"
+          class="sidebar-link active"
+          onclick="
+            setActiveLink(this);
+            closeSidebarMobile();
+          "
+        >
+          <span class="sidebar-icon">⌂</span>
+          <span>Home</span>
+        </a>
+
+        <a
+          href="#sessions"
+          class="sidebar-link"
+          onclick="
+            setActiveLink(this);
+            closeSidebarMobile();
+          "
+        >
+          <span class="sidebar-icon">✦</span>
+          <span>Sessions</span>
+        </a>
+
+        <button
+          type="button"
+          class="sidebar-link"
+          onclick="
+            openMenu();
+            closeSidebarMobile();
+          "
+        >
+          <span class="sidebar-icon">◎</span>
+          <span>About</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-cta">
+        <div
+          class="rounded-2xl p-4 bg-gradient-to-br from-violet-600/30 to-pink-500/20 border border-white/10"
+        >
+          <p class="text-sm text-gray-300 leading-6">
+            Ready to explore more possibilities?
+          </p>
+
+          <a
+            href="#connect"
+            onclick="closeSidebarMobile()"
+            class="block mt-3 text-center rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-2.5 text-sm font-semibold hover:scale-[1.03] transition shadow-lg shadow-violet-600/20"
+          >
+            Ask a Question
+          </a>
+
+          <a
+            href="#contact"
+            onclick="closeSidebarMobile()"
+            class="block mt-3 text-center rounded-xl border border-violet-400/40 bg-violet-500/10 py-2.5 text-sm font-semibold hover:bg-violet-500/20 transition"
+          >
+            Book a Session
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <header id="home" class="relative z-50 px-4 pt-4">
       <div class="max-w-7xl mx-auto">
         <div class="glass rounded-3xl p-6">
           <div class="flex flex-col md:flex-row items-center gap-10">
@@ -148,24 +407,6 @@
                 Access consciousness tools to create more ease, awareness,
                 clarity and possibilities in every aspect of your life.
               </p>
-
-              <div
-                class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start"
-              >
-                <button
-                  onclick="openMenu()"
-                  class="px-7 py-3 rounded-full bg-gradient-to-r from-violet-600 to-pink-500 font-semibold hover:scale-105 transition duration-300 shadow-lg"
-                >
-                  About
-                </button>
-
-                <a
-                  href="#connect"
-                  class="px-7 py-3 rounded-full border border-violet-400 text-violet-300 hover:bg-violet-500/10 hover:border-violet-300 transition duration-300"
-                >
-                  Ask a Question
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -180,38 +421,32 @@
       </h2>
 
       <p class="text-lg md:text-xl leading-8 text-slate-400 max-w-2xl mx-auto">
-        The tools of <strong>Access Consciousness</strong> are highly dynamic
-        and, when applied, have the capacity to transform difficult situations
-        into total ease, joy, and glory. They provide a new perspective that
-        helps you release limitations and step into the life you truly desire.
+        The tools of
+        <strong>Access Consciousness</strong>
+        are highly dynamic and, when applied, have the capacity to transform
+        difficult situations into total ease, joy, and glory. They provide a new
+        perspective that helps you release limitations and step into the life
+        you truly desire.
       </p>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 pt-8 md:pt-[2rem] pb-10">
-      <div class="mb-12 text-center">
-        <p class="text-sm font-bold uppercase tracking-[0.3em] text-pink-400">
-          Explore
-        </p>
+    <main class="max-w-7xl mx-auto px-4 pt-8 md:pt-8 pb-10">
+      <section id="sessions">
+        <div class="mb-12 text-center">
+          <p class="text-sm font-bold uppercase tracking-[0.3em] text-pink-400">
+            Explore
+          </p>
 
-        <h2 class="mt-3 text-4xl font-extrabold md:text-5xl">
-          Sessions & Possibilities
-        </h2>
+          <h2 class="mt-3 text-4xl font-extrabold md:text-5xl">
+            Sessions & Possibilities
+          </h2>
 
-        <p class="mx-auto mt-4 max-w-2xl text-gray-400">
-          Choose the experience that speaks to you.
-        </p>
-
-        <div class="py-10">
-          <a
-            href="#contact"
-            class="px-7 py-3 rounded-full bg-violet-600 text-white hover:bg-violet-700 transition duration-300 shadow-lg shadow-violet-600/30"
-          >
-            Book Your Session
-          </a>
+          <p class="mx-auto mt-4 max-w-2xl text-gray-400">
+            Choose the experience that speaks to you.
+          </p>
         </div>
-      </div>
-      <div class="flex flex-col lg:flex-row gap-6 items-start">
-        <section class="w-full grid sm:grid-cols-2 gap-6">
+
+        <div class="w-full grid sm:grid-cols-2 gap-6">
           <div
             class="glass rounded-3xl p-6 flex flex-col group transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(139,92,246,0.35)]"
           >
@@ -335,10 +570,10 @@
               Explore →
             </button>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <div id="menu" class="hidden fixed inset-0 z-50">
+      <div id="menu" class="hidden fixed inset-0 z-[150]">
         <div
           onclick="closeMenu()"
           class="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -350,7 +585,7 @@
           <button
             onclick="closeMenu()"
             class="text-4xl hover:text-violet-400 transition"
-            aria-label="Close Menu"
+            aria-label="Close About"
           >
             ×
           </button>
@@ -383,16 +618,24 @@
               Hi! I'm Navya
             </h3>
 
-            <p class="text-gray-400 mt-4 leading-7"></p>
+            <p class="text-gray-400 mt-4 leading-7">
+              Welcome to Tamanna. This is a space where you can explore greater
+              awareness, possibilities, and a different relationship with
+              yourself and your life.
+            </p>
 
-            <p class="text-gray-400 mt-4 leading-7"></p>
+            <p class="text-gray-400 mt-4 leading-7">
+              Through these sessions, my intention is to create a supportive and
+              relaxing space where you can explore what else may be possible for
+              you.
+            </p>
           </div>
         </aside>
       </div>
 
       <div
         id="modal"
-        class="hidden fixed inset-0 z-[60] bg-black/80 backdrop-blur flex items-center justify-center p-4"
+        class="hidden fixed inset-0 z-[200] bg-black/80 backdrop-blur flex items-center justify-center p-4"
       >
         <div
           id="modalBox"
@@ -417,10 +660,16 @@
         </div>
       </div>
 
-      <section id="contact" class="mt-10">
+      <section id="contact" class="mt-20 scroll-mt-8">
         <div class="glass rounded-3xl p-8">
           <div class="text-center max-w-3xl mx-auto">
-            <h2 class="text-4xl font-bold">Book a Session</h2>
+            <p
+              class="text-sm font-bold uppercase tracking-[0.3em] text-pink-400"
+            >
+              Connect
+            </p>
+
+            <h2 class="text-4xl font-bold mt-3">Book a Session</h2>
 
             <p class="mt-4 text-gray-400 leading-7">
               Ready to explore more ease, awareness, and possibilities? Share
@@ -429,7 +678,7 @@
           </div>
 
           <form id="contactForm" class="mt-10 grid sm:grid-cols-2 gap-5">
-            <label class="sr-only" for="name"> Full Name </label>
+            <label class="sr-only" for="name">Full Name</label>
 
             <input
               id="name"
@@ -440,7 +689,7 @@
               class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 focus:ring-2 focus:ring-violet-500 outline-none"
             />
 
-            <label class="sr-only" for="mobile"> Mobile Number </label>
+            <label class="sr-only" for="mobile">Mobile Number</label>
 
             <input
               id="mobile"
@@ -453,7 +702,7 @@
               class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 focus:ring-2 focus:ring-violet-500 outline-none"
             />
 
-            <label class="sr-only" for="email"> Email Address </label>
+            <label class="sr-only" for="email">Email Address</label>
 
             <input
               id="email"
@@ -463,7 +712,7 @@
               class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 focus:ring-2 focus:ring-violet-500 outline-none"
             />
 
-            <label class="sr-only" for="service"> Choose Session </label>
+            <label class="sr-only" for="service">Choose Session</label>
 
             <select
               id="service"
@@ -471,13 +720,9 @@
               class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white"
             >
               <option value="" class="text-black">Choose Session</option>
-
               <option class="text-black">Access Bars</option>
-
               <option class="text-black">Access Body Process</option>
-
               <option class="text-black">Access Facelift</option>
-
               <option class="text-black">Symphony of Possibilities</option>
             </select>
 
@@ -490,15 +735,15 @@
 
             <button
               type="submit"
-              class="sm:col-span-2 rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-3 font-semibold hover:scale-105 transition"
+              class="sm:col-span-2 rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-3 font-semibold hover:scale-[1.02] transition"
             >
               Book Your Session
             </button>
           </form>
         </div>
 
-        <section id="connect" class="mt-10">
-          <div class="glass rounded-3xl p-6 mt-6">
+        <section id="connect" class="mt-10 scroll-mt-8">
+          <div class="glass rounded-3xl p-6">
             <h3 class="text-xl font-semibold">Connect With Us</h3>
 
             <p class="text-gray-400 mt-3 leading-7">
@@ -512,7 +757,7 @@
                 type="text"
                 placeholder="Full Name"
                 required
-                class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3"
+                class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:ring-2 focus:ring-violet-500"
               />
 
               <input
@@ -520,12 +765,12 @@
                 type="tel"
                 placeholder="Mobile Number"
                 required
-                class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3"
+                class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:ring-2 focus:ring-violet-500"
               />
 
               <button
                 type="submit"
-                class="w-full rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-3 font-semibold hover:scale-105 transition"
+                class="w-full rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 py-3 font-semibold hover:scale-[1.02] transition"
               >
                 Submit
               </button>
@@ -535,7 +780,7 @@
       </section>
 
       <footer class="mt-12 py-8 text-center text-gray-400">
-        <p>instagram...</p>
+        <p class="mt-2">Access More of You</p>
       </footer>
     </main>
 
@@ -551,6 +796,7 @@ These points are connected with different areas of life such as creativity, cont
 The process helps release limiting thoughts, emotions, beliefs, and patterns that may be stopping you from creating more possibilities.
 
 Benefits may include:
+
 • Deep relaxation
 • Reduced stress and tension
 • Greater clarity and awareness
@@ -570,6 +816,7 @@ These processes use gentle touch and awareness to support the body's natural abi
 They are designed to help you develop a different relationship with your body and become more aware of its possibilities.
 
 Benefits may include:
+
 • Increased body awareness
 • Greater relaxation
 • More connection with your body
@@ -589,6 +836,7 @@ The process involves light touch on specific areas of the face and body while in
 It is designed to create more ease with your body and your relationship with aging.
 
 Benefits may include:
+
 • Relaxation and rejuvenation
 • Greater body awareness
 • A sense of lightness and wellbeing
@@ -608,6 +856,7 @@ It uses questions, awareness, and energetic tools to help you recognize possibil
 The process encourages you to move beyond limitations and discover what else could be possible.
 
 Benefits may include:
+
 • Expanding awareness
 • Creating new perspectives
 • Greater clarity in choices
@@ -618,13 +867,59 @@ A Symphony session invites you to explore a different way of being and receiving
         },
       };
 
+      function openSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const button = document.getElementById("mobileMenuBtn");
+
+        sidebar.classList.add("open");
+        overlay.classList.add("active");
+        button.classList.add("is-hidden");
+        button.setAttribute("aria-expanded", "true");
+
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const button = document.getElementById("mobileMenuBtn");
+
+        sidebar.classList.remove("open");
+        overlay.classList.remove("active");
+        button.classList.remove("is-hidden");
+        button.setAttribute("aria-expanded", "false");
+
+        document.body.style.overflow = "";
+      }
+
+      function closeSidebarMobile() {
+        if (window.innerWidth < 1024) {
+          closeSidebar();
+        }
+      }
+
+      function setActiveLink(element) {
+        document.querySelectorAll(".sidebar-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        element.classList.add("active");
+      }
+
       function openMenu() {
-        document.getElementById("menu").classList.remove("hidden");
+        const menu = document.getElementById("menu");
+
+        menu.classList.remove("hidden");
+
         document.body.style.overflow = "hidden";
       }
 
       function closeMenu() {
-        document.getElementById("menu").classList.add("hidden");
+        const menu = document.getElementById("menu");
+
+        menu.classList.add("hidden");
+
         document.body.style.overflow = "";
       }
 
@@ -632,7 +927,9 @@ A Symphony session invites you to explore a different way of being and receiving
         const modal = document.getElementById("modal");
         const box = document.getElementById("modalBox");
 
-        if (!modalData[type]) return;
+        if (!modalData[type]) {
+          return;
+        }
 
         document.getElementById("modalTitle").textContent =
           modalData[type].title;
@@ -656,24 +953,53 @@ A Symphony session invites you to explore a different way of being and receiving
 
         setTimeout(() => {
           modal.classList.add("hidden");
-
           document.body.style.overflow = "";
         }, 250);
       }
 
-      document.getElementById("modal").addEventListener("click", function (e) {
-        if (e.target === this) {
-          closeModal();
-        }
-      });
+      document
+        .getElementById("modal")
+        .addEventListener("click", function (event) {
+          if (event.target === this) {
+            closeModal();
+          }
+        });
 
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
           closeModal();
-
           closeMenu();
+          closeSidebar();
         }
       });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 1024) {
+          closeSidebar();
+        }
+      });
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          alert("Thank you! Your session request has been received.");
+
+          this.reset();
+        });
+
+      document
+        .getElementById("menuForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          alert("Thank you! We will connect with you soon.");
+
+          this.reset();
+        });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
